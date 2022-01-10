@@ -6,6 +6,10 @@ export const REDIRECT_PATH = "/oauth/callback";
 
 const redirect_uri = window.location.origin + REDIRECT_PATH;
 
+export const getToken = () => {
+  return localStorage.getItem("access_token");
+};
+
 export const signIn = () => {
   window.location.replace(
     `https://www.strava.com/oauth/authorize?client_id=${CLIENT_ID}&response_type=code&redirect_uri=${redirect_uri}&approval_prompt=force&scope=${SCOPE}`
