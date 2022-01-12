@@ -1,13 +1,22 @@
+import { createUseStyles } from "react-jss";
 import { ActivityStats } from "./components/ActivityStats";
 import { Profile } from "./components/Profile";
 
-function App() {
+const useStyles = createUseStyles({
+  wrapper: {
+    padding: "2rem",
+  },
+});
+
+const App = () => {
+  const classes = useStyles();
+
   return (
-    <div className="App">
+    <div className={classes.wrapper}>
       <ActivityStats />
       <Profile />
     </div>
   );
-}
+};
 
 export default App;

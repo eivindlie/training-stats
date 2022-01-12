@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
+import { createUseStyles } from "react-jss";
 import { getActivitiesBetween } from "../clients/stravaClient";
 import { IActivity } from "../types/contractTypes";
+
+const useStyles = createUseStyles({
+  wrapper: {},
+});
 
 export const ActivityStats = () => {
   const [activities, setActivities] = useState<IActivity[]>();
@@ -25,8 +30,10 @@ export const ActivityStats = () => {
     .map((a) => a.distance)
     .reduce((a, b) => a + b);
 
+  const classes = useStyles();
+
   return (
-    <div>
+    <div className={classes.wrapper}>
       <p>
         Avstand tilbakelagt på ski i år:{" "}
         {!!skiDistance ? (skiDistance / 1000).toFixed(2) : ""} km
