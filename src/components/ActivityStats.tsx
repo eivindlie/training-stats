@@ -60,13 +60,22 @@ export const ActivityStats = ({ activities, typeName }: IProps) => {
         <dd>{(distance / 1000).toFixed(2)} km</dd>
 
         <dt>Snittavstand</dt>
-        <dd>{(distance / (1000 * activities.length)).toFixed(2)} km</dd>
+        <dd>
+          {activities.length === 0
+            ? 0
+            : (distance / (1000 * activities.length)).toFixed(2)}{" "}
+          km
+        </dd>
 
         <dt>Total tid</dt>
         <dd>{formatTime(totalTime)}</dd>
 
         <dt>Snittid</dt>
-        <dd>{formatTime(totalTime / activities.length)}</dd>
+        <dd>
+          {activities.length === 0
+            ? 0
+            : formatTime(totalTime / activities.length)}
+        </dd>
       </dl>
     </div>
   );

@@ -7,9 +7,15 @@ import { ActivityStats } from "./ActivityStats";
 
 const useStyles = createUseStyles({
   list: {
+    width: "100%",
     display: "flex",
     justifyContent: "center",
+    flexWrap: "wrap",
     gap: "5rem",
+    "& > *": {
+      flexShrink: 0,
+      flexGrow: 0,
+    },
   },
 });
 
@@ -18,8 +24,8 @@ export const ActivityStatList = () => {
 
   useEffect(() => {
     const today = new Date();
-    const yearStart = new Date(today.getFullYear(), 0, 1);
-    const yearEnd = new Date(today.getFullYear(), 11, 31, 23, 59, 59, 999);
+    const yearStart = new Date(today.getFullYear() - 1, 0, 1);
+    const yearEnd = new Date(today.getFullYear() - 1, 11, 31, 23, 59, 59, 999);
 
     getActivitiesBetween(yearStart, yearEnd).then((result) => {
       setActivities(result);
@@ -32,6 +38,7 @@ export const ActivityStatList = () => {
       name: "Langrenn",
     },
     { type: "Run", name: "Løping" },
+    { type: "Hike", name: "Gåtur" },
   ];
 
   const classes = useStyles();
