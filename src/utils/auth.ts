@@ -1,7 +1,7 @@
 import { ITokenResponse } from "../types/auth";
 
 const CLIENT_ID = 76413;
-const SCOPE = "read";
+const SCOPE = "read,activity:read_all";
 export const REDIRECT_PATH = "/oauth/callback";
 
 const redirect_uri = window.location.origin + REDIRECT_PATH;
@@ -49,4 +49,6 @@ export const handle_callback = async () => {
   localStorage.setItem("access_token", data.access_token);
   localStorage.setItem("token_expiration", data.expires_at.toString());
   localStorage.setItem("refresh_token", data.refresh_token);
+
+  window.location.replace(window.location.origin);
 };

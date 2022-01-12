@@ -14,14 +14,14 @@ if (window.location.pathname.startsWith(REDIRECT_PATH)) {
   handle_callback();
 } else if (!isSignedIn()) {
   signIn();
+} else {
+  ReactDOM.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>,
+    document.getElementById("root")
+  );
 }
-
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById("root")
-);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
