@@ -1,6 +1,6 @@
 import { createUseStyles } from "react-jss";
 import { Routes } from "./Routes";
-import { Header } from "./components/Header";
+import { Header } from "./components";
 
 const useStyles = createUseStyles({
   wrapper: {},

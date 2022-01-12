@@ -1,7 +1,6 @@
 import { Routes as ReactRoutes, Route } from "react-router-dom";
 
-import { ActivityStats } from "./components/ActivityStats";
-import { Profile } from "./components/Profile";
+import { ActivityStats, Profile } from "components";
 
 export const Routes = () => {
   return (

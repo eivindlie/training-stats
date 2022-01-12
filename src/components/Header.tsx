@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { createUseStyles } from "react-jss";
 import { Link } from "react-router-dom";
-import { getProfile } from "../clients/stravaClient";
-import { IAthlete } from "../types/contractTypes";
-import { signOut } from "../utils/auth";
+import { getProfile } from "clients/stravaClient";
+import { IAthlete } from "types/contractTypes";
+import { signOut } from "utils/auth";
 
 const useStyles = createUseStyles({
   nav: {

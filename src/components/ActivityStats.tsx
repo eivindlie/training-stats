@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { createUseStyles } from "react-jss";
-import { getActivitiesBetween } from "../clients/stravaClient";
-import { IActivity } from "../types/contractTypes";
+
+import { getActivitiesBetween } from "clients/stravaClient";
+import { IActivity } from "types/contractTypes";
 
 const useStyles = createUseStyles({
   wrapper: {},
