@@ -52,3 +52,11 @@ export const handle_callback = async () => {
 
   window.location.replace(window.location.origin);
 };
+
+export const signOut = () => {
+  localStorage.removeItem("access_token");
+  localStorage.removeItem("token_expiration");
+  localStorage.removeItem("refresh_token");
+
+  window.location.replace(window.location.origin);
+};

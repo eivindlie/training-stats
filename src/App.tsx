@@ -1,9 +1,11 @@
 import { createUseStyles } from "react-jss";
 import { ActivityStats } from "./components/ActivityStats";
+import { Header } from "./components/Header";
 import { Profile } from "./components/Profile";
 
 const useStyles = createUseStyles({
-  wrapper: {
+  wrapper: {},
+  content: {
     padding: "2rem",
   },
 });
@@ -13,8 +15,11 @@ const App = () => {
 
   return (
     <div className={classes.wrapper}>
-      <ActivityStats />
-      <Profile />
+      <Header />
+      <div className={classes.content}>
+        <ActivityStats />
+        <Profile />
+      </div>
     </div>
   );
 };
