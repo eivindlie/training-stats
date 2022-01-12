@@ -19,9 +19,13 @@
     "scope": "typescriptreact,javascriptreact",
     "prefix": "comp",
     "body": [
+      "import { createUseStyles } from \"react-jss\";",
+      "",
+      "const useStyles = createUseStyles({});",
       "",
       "export const $TM_FILENAME_BASE = () => {",
       "  ",
+      "  const classes = useStyles();",
       "  return <div>$1</div>;",
       "}"
     ]

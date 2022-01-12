@@ -1,48 +1,73 @@
-import { useEffect, useState } from "react";
 import { createUseStyles } from "react-jss";
 
-import { getActivitiesBetween } from "clients/stravaClient";
 import { IActivity } from "types/contractTypes";
 
 const useStyles = createUseStyles({
-  wrapper: {},
+  wrapper: {
+    padding: "1rem 2rem",
+    boxShadow: "#222 0 25px 70px",
+  },
+  header: {
+    marginBottom: "2rem",
+  },
+  detailList: {
+    "& dd": {
+      display: "inline",
+      margin: 0,
+    },
+    "& dd::after": {
+      display: "block",
+      content: "''",
+    },
+    "& dt": {
+      display: "inline-block",
+      minWidth: "8rem",
+      marginBottom: "0.75rem",
+    },
+  },
 });
 
-export const ActivityStats = () => {
-  const [activities, setActivities] = useState<IActivity[]>();
+interface IProps {
+  activities: IActivity[];
+  type: string;
+  typeName: string;
+}
 
-  useEffect(() => {
-    const today = new Date();
-    const yearStart = new Date(today.getFullYear(), 0, 1);
-    const yearEnd = new Date(today.getFullYear(), 11, 31, 23, 59, 59, 999);
+const formatTime = (seconds: number): string => {
+  const date = new Date(0);
+  date.setSeconds(seconds);
 
-    getActivitiesBetween(yearStart, yearEnd).then((result) => {
-      setActivities(result);
-    });
-  }, []);
+  return date.toISOString().slice(11, 19);
+};
 
-  const skiDistance = activities
-    ?.filter((a) => a.type === "NordicSki")
-    .map((a) => a.distance)
-    .reduce((a, b) => a + b);
+export const ActivityStats = ({ activities, typeName }: IProps) => {
+  const distance = activities.map((a) => a.distance).reduce((a, b) => a + b, 0);
 
-  const runDistance = activities
-    ?.filter((a) => a.type === "Run")
-    .map((a) => a.distance)
-    .reduce((a, b) => a + b);
+  const totalTime = activities
+    .map((a) => a.moving_time)
+    .reduce((a, b) => a + b, 0);
 
   const classes = useStyles();
 
   return (
     <div className={classes.wrapper}>
-      <p>
-        Avstand tilbakelagt på ski i år:{" "}
-        {!!skiDistance ? (skiDistance / 1000).toFixed(2) : ""} km
-      </p>
-      <p>
-        Avstand løpt i år:{" "}
-        {!!runDistance ? (runDistance / 1000).toFixed(2) : ""} km
-      </p>
+      <h2 className={classes.header}>{typeName}</h2>
+      <dl className={classes.detailList}>
+        <dt>Antall aktiviteter</dt>
+        <dd>{activities.length}</dd>
+
+        <dt>Avstand</dt>
+        <dd>{(distance / 1000).toFixed(2)} km</dd>
+
+        <dt>Snittavstand</dt>
+        <dd>{(distance / (1000 * activities.length)).toFixed(2)} km</dd>
+
+        <dt>Total tid</dt>
+        <dd>{formatTime(totalTime)}</dd>
+
+        <dt>Snittid</dt>
+        <dd>{formatTime(totalTime / activities.length)}</dd>
+      </dl>
     </div>
   );
 };

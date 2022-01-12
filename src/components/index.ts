@@ -1,4 +1,4 @@
 export { Header } from "./Header";
 
-export { ActivityStats } from "./ActivityStats";
+export { ActivityStatList } from "./ActivityStatList";
 export { Profile } from "./Profile";
