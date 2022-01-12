@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { createUseStyles } from "react-jss";
+import { Link } from "react-router-dom";
 import { getProfile } from "../clients/stravaClient";
 import { IAthlete } from "../types/contractTypes";
 import { signOut } from "../utils/auth";
@@ -28,9 +29,9 @@ export const Header = () => {
 
   return (
     <nav className={classes.nav}>
-      <div>
+      <Link to={"/profile"}>
         {profile?.firstname} {profile?.lastname}
-      </div>
+      </Link>
       <button onClick={signOut}>Logg ut</button>
     </nav>
   );

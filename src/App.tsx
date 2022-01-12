@@ -1,7 +1,6 @@
 import { createUseStyles } from "react-jss";
-import { ActivityStats } from "./components/ActivityStats";
+import { Routes } from "./Routes";
 import { Header } from "./components/Header";
-import { Profile } from "./components/Profile";
 
 const useStyles = createUseStyles({
   wrapper: {},
@@ -10,18 +9,15 @@ const useStyles = createUseStyles({
   },
 });
 
-const App = () => {
+export const App = () => {
   const classes = useStyles();
 
   return (
     <div className={classes.wrapper}>
       <Header />
       <div className={classes.content}>
-        <ActivityStats />
-        <Profile />
+        <Routes />
       </div>
     </div>
   );
 };
-
-export default App;

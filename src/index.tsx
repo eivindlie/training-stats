@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./style.scss";
-import App from "./App";
+import { App } from "./App";
 import reportWebVitals from "./reportWebVitals";
 import {
   handle_callback,
@@ -9,6 +9,7 @@ import {
   REDIRECT_PATH,
   signIn,
 } from "./utils/auth";
+import { BrowserRouter as Router } from "react-router-dom";
 
 if (window.location.pathname.startsWith(REDIRECT_PATH)) {
   handle_callback();
@@ -17,7 +18,9 @@ if (window.location.pathname.startsWith(REDIRECT_PATH)) {
 } else {
   ReactDOM.render(
     <React.StrictMode>
-      <App />
+      <Router>
+        <App />
+      </Router>
     </React.StrictMode>,
     document.getElementById("root")
   );

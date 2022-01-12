@@ -4,7 +4,7 @@ html {
 
 body {
   margin: 0;
-  background: #202020;
+  background: #111;
   color: #fff;
 
   font-family: "Roboto", "Arial", sans-serif;
@@ -19,6 +19,11 @@ button {
   cursor: pointer;
   color: inherit;
   font-size: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
 code {
