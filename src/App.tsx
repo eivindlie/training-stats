@@ -16,7 +16,10 @@ export const App = () => {
 
   return (
     <>
-      <GithubCorner href="https://github.com/Lagostra/training-stats" />
+      <GithubCorner
+        href="https://github.com/Lagostra/training-stats"
+        direction="left"
+      />
       <div className={classes.wrapper}>
         <Header />
         <div className={classes.content}>
