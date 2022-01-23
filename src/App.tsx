@@ -1,6 +1,8 @@
 import { createUseStyles } from "react-jss";
 import { Routes } from "./Routes";
 import { Header } from "./components";
+import React from "react";
+import GithubCorner from "react-github-corner";
 
 const useStyles = createUseStyles({
   wrapper: {},
@@ -13,11 +15,14 @@ export const App = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.wrapper}>
-      <Header />
-      <div className={classes.content}>
-        <Routes />
+    <>
+      <GithubCorner href="https://github.com/Lagostra/training-stats" />
+      <div className={classes.wrapper}>
+        <Header />
+        <div className={classes.content}>
+          <Routes />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
