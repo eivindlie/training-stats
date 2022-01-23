@@ -28,10 +28,9 @@ app.use(
 );
 
 app.get("/auth/strava/authorize", (request, response) => {
+  const protocol = request.protocol;
   const host = request.get("host");
-  const redirectUri = `${
-    isDevelopment ? "http" : "https"
-  }://${host}/oauth/callback`;
+  const redirectUri = `${protocol}://${host}/oauth/callback`;
   response.redirect(
     `${BASE_URL}/authorize?client_id=${process.env.STRAVA_CLIENT_ID}&response_type=code&redirect_uri=${redirectUri}&approval_prompt=force&scope=${SCOPE}`
   );
