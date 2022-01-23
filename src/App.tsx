@@ -19,6 +19,8 @@ export const App = () => {
       <GithubCorner
         href="https://github.com/Lagostra/training-stats"
         direction="left"
+        bannerColor="#fff"
+        octoColor="#151513"
       />
       <div className={classes.wrapper}>
         <Header />
