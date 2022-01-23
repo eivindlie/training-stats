@@ -11,9 +11,7 @@ export const getToken = () => {
 };
 
 export const signIn = () => {
-  window.location.replace(
-    `https://www.strava.com/oauth/authorize?client_id=${CLIENT_ID}&response_type=code&redirect_uri=${redirect_uri}&approval_prompt=force&scope=${SCOPE}`
-  );
+  window.location.replace(window.location.origin + "/auth/strava/authorize");
 };
 
 export const isSignedIn = () => {
@@ -39,7 +37,7 @@ export const handle_callback = async () => {
   const code = params.get("code");
 
   const response = await fetch(
-    `https://www.strava.com/oauth/token?client_id=${CLIENT_ID}&client_secret=${process.env.REACT_APP_STRAVA_CLIENT_SECRET}&code=${code}&grant_type=authorization_code`,
+    `${window.location.origin}/auth/strava/token?code=${code}`,
     {
       method: "POST",
     }
