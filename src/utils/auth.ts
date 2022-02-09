@@ -1,12 +1,18 @@
 import { ITokenResponse } from "../types/auth";
 export const REDIRECT_PATH = "/oauth/callback";
 
+const BASE_URL = "https://us-central1-training-stats-ela.cloudfunctions.net";
+
 export const getToken = () => {
   return localStorage.getItem("access_token");
 };
 
 export const signIn = () => {
-  window.location.replace(window.location.origin + "/auth/strava/authorize");
+  window.location.replace(
+    `${BASE_URL}/authorize?state=${JSON.stringify({
+      environment: process.env.NODE_ENV,
+    })}`
+  );
 };
 
 export const isSignedIn = () => {
@@ -31,12 +37,9 @@ export const handle_callback = async () => {
   const params = new URLSearchParams(window.location.search);
   const code = params.get("code");
 
-  const response = await fetch(
-    `${window.location.origin}/auth/strava/token?code=${code}`,
-    {
-      method: "POST",
-    }
-  );
+  const response = await fetch(`${BASE_URL}/token?code=${code}`, {
+    method: "POST",
+  });
 
   const data = (await response.json()) as ITokenResponse;
   localStorage.setItem("access_token", data.access_token);

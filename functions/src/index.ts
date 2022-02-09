@@ -9,7 +9,9 @@ export const authorize = functions.https.onRequest(
     response.redirect(
       `${BASE_URL}/authorize?client_id=${
         functions.config().strava.clientid
-      }&response_type=code&redirect_uri=${redirectUri}&approval_prompt=force&scope=${SCOPE}`
+      }&response_type=code&redirect_uri=${redirectUri}&approval_prompt=force&scope=${SCOPE}&state=${
+        request.query.state
+      }`
     );
   }
 );
@@ -26,4 +28,15 @@ export const token = functions.https.onRequest(async (request, response) => {
   });
 
   response.send(await tokenResponse.text());
+});
+
+export const redirect = functions.https.onRequest(async (request, response) => {
+  const state = JSON.parse(request.query.state as string);
+  let url: string;
+  if (state["environment"] === "development") {
+    url = "http://localhost:3000";
+  } else {
+    url = "https://training-stats.andreassen.info";
+  }
+  response.redirect(`${url}?code=${request.query.code}`);
 });
