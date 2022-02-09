@@ -1,10 +1,5 @@
 import { ITokenResponse } from "../types/auth";
-
-const CLIENT_ID = 76413;
-const SCOPE = "read,activity:read_all";
 export const REDIRECT_PATH = "/oauth/callback";
-
-const redirect_uri = window.location.origin + REDIRECT_PATH;
 
 export const getToken = () => {
   return localStorage.getItem("access_token");
