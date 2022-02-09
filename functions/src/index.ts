@@ -1,4 +1,5 @@
 import * as functions from "firebase-functions";
+import fetch from "node-fetch";
 
 const BASE_URL = "https://www.strava.com/oauth";
 const SCOPE = "read,activity:read_all";
@@ -10,7 +11,7 @@ export const authorize = functions.https.onRequest(
     response.redirect(
       `${BASE_URL}/authorize?client_id=${
         functions.config().strava.clientid
-      }&response_type=code&redirect_uri=${REDIRECT_URI}&approval_prompt=force&scope=${SCOPE}&state=${
+      }&response_type=code&redirect_uri=${REDIRECT_URI}&scope=${SCOPE}&state=${
         request.query.state
       }`
     );
