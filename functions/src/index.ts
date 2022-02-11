@@ -7,9 +7,24 @@ const SCOPE = "read,activity:read_all";
 const REDIRECT_URI =
   "https://us-central1-training-stats-ela.cloudfunctions.net/redirect";
 
+const CORS_WHITELIST = [
+  "https://localhost:3000",
+  "https://training-stats.andreassen.info",
+];
+
+const corsOptions: cors.CorsOptions = {
+  origin: (origin, callback) => {
+    if (origin && CORS_WHITELIST.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+};
+
 export const authorize = functions.https.onRequest(
   async (request, response) => {
-    cors()(request, response, () => {
+    cors(corsOptions)(request, response, () => {
       response.redirect(
         `${BASE_URL}/authorize?client_id=${
           functions.config().strava.clientid
@@ -22,7 +37,7 @@ export const authorize = functions.https.onRequest(
 );
 
 export const token = functions.https.onRequest(async (request, response) => {
-  cors()(request, response, async () => {
+  cors(corsOptions)(request, response, async () => {
     const url = `${BASE_URL}/token?client_id=${
       functions.config().strava.clientid
     }&client_secret=${functions.config().strava.clientsecret}&code=${
@@ -38,7 +53,7 @@ export const token = functions.https.onRequest(async (request, response) => {
 });
 
 export const redirect = functions.https.onRequest(async (request, response) => {
-  cors()(request, response, () => {
+  cors(corsOptions)(request, response, () => {
     const state = JSON.parse(request.query.state as string);
     let url: string;
     if (state["environment"] === "development") {
