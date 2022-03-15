@@ -47,6 +47,8 @@ export const ActivityStats = ({ activities, typeName }: IProps) => {
     .map((a) => a.moving_time)
     .reduce((a, b) => a + b, 0);
 
+  console.log("Total time (ms): ", totalTime);
+
   const classes = useStyles();
 
   return (
