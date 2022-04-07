@@ -34,10 +34,11 @@ interface IProps {
 }
 
 const formatTime = (seconds: number): string => {
-  const date = new Date(0);
-  date.setSeconds(seconds);
+  const s = seconds % 60;
+  const m = Math.floor(seconds / 60) % 60;
+  const h = Math.floor(seconds / 3600);
 
-  return date.toISOString().slice(11, 19);
+  return `${h}:${m}:${s}`;
 };
 
 export const ActivityStats = ({ activities, typeName }: IProps) => {
