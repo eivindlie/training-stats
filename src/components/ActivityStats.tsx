@@ -34,7 +34,7 @@ interface IProps {
 }
 
 const formatTime = (seconds: number): string => {
-  const s = seconds % 60;
+  const s = Math.floor(seconds % 60);
   const m = Math.floor(seconds / 60) % 60;
   const h = Math.floor(seconds / 3600);
 
