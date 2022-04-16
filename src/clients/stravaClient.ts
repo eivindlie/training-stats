@@ -15,6 +15,6 @@ export const getActivitiesBetween = async (
   return await get(
     `${BASE_URL}/athlete/activities?after=${
       startDate.getTime() / 1000
-    }&before=${endDate.getTime() / 1000}`
+    }&before=${endDate.getTime() / 1000}&per_page=200`
   );
 };
