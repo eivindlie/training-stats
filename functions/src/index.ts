@@ -8,7 +8,7 @@ const REDIRECT_URI =
   "https://us-central1-training-stats-ela.cloudfunctions.net/redirect";
 
 const CORS_WHITELIST = [
-  "https://localhost:3000",
+  "http://localhost:3000",
   "https://training-stats.andreassen.info",
 ];
 
