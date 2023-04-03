@@ -49,6 +49,7 @@ export const ActivityStatList = () => {
     },
     { type: "Run", name: "Løping" },
     { type: "Hike", name: "Gåtur" },
+    { type: "Kayaking", name: "Kajakk" },
   ];
 
   const classes = useStyles();
