@@ -9,7 +9,7 @@ const REDIRECT_URI =
 
 const CORS_WHITELIST = [
   "http://localhost:3000",
-  "https://training-stats.andreassen.info",
+  "https://training-stats.prograd.no",
 ];
 
 const corsOptions: cors.CorsOptions = {
@@ -59,7 +59,7 @@ export const redirect = functions.https.onRequest(async (request, response) => {
     if (state["environment"] === "development") {
       url = "http://localhost:3000/oauth/callback";
     } else {
-      url = "https://training-stats.andreassen.info/oauth/callback";
+      url = "https://training-stats.prograd.no/oauth/callback";
     }
     response.redirect(`${url}?code=${request.query.code}`);
   });
