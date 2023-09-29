@@ -58,14 +58,19 @@ export const ActivityStatList = () => {
       <YearPicker year={year} setYear={setYear} />
       {!loading && (
         <div className={classes.list}>
-          {displayTypes.map((type) => (
-            <ActivityStats
-              activities={activities?.filter((a) => a.type === type.type) ?? []}
-              type={type.type}
-              typeName={type.name}
-              key={type.type}
-            />
-          ))}
+          {displayTypes.map(
+            (type) =>
+              activities?.some((a) => a.type === type.type) && (
+                <ActivityStats
+                  activities={
+                    activities?.filter((a) => a.type === type.type) ?? []
+                  }
+                  type={type.type}
+                  typeName={type.name}
+                  key={type.type}
+                />
+              )
+          )}
         </div>
       )}
     </div>
