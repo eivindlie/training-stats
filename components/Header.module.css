@@ -1,0 +1,10 @@
+.nav {
+  width: calc(100% - 2rem);
+  height: 60px;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 1rem;
+  gap: 0.5rem;
+}

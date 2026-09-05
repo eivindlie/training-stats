@@ -1,0 +1,24 @@
+.wrapper {
+  padding: 1rem 2rem;
+  box-shadow: #222 0 25px 70px;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.detailList dd {
+  display: inline;
+  margin: 0;
+}
+
+.detailList dd::after {
+  display: block;
+  content: "";
+}
+
+.detailList dt {
+  display: inline-block;
+  min-width: 8rem;
+  margin-bottom: 0.75rem;
+}

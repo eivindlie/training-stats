@@ -1,0 +1,10 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+  font-size: 1.5rem;
+}
+
+.disabled {
+  filter: brightness(0.6);
+}
